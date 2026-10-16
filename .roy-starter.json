@@ -1,7 +1,7 @@
 {
   "kit": "roy-starter",
   "edition": "public",
-  "source": "3b4d255",
+  "source": "2b68395",
   "files": [
     ".claude/settings.json",
     ".claude/skills/ads-check/SKILL.md",
