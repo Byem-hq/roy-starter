@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(workspace/**)",
+      "Edit(shared-rules/**)",
+      "Edit(.claude/skills/**)",
+      "Bash(mkdir -p workspace:*)",
+      "Bash(cp -r .claude/skills/:*)",
+      "Bash(python3 tools/ads_check.py:*)",
+      "WebFetch"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

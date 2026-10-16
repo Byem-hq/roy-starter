@@ -1,0 +1,23 @@
+{
+  "kit": "roy-starter",
+  "edition": "public",
+  "source": "ce1a89e",
+  "files": [
+    ".claude/settings.json",
+    ".claude/skills/ads-check/SKILL.md",
+    ".claude/skills/landing-check/SKILL.md",
+    ".claude/skills/roy-start/SKILL.md",
+    ".gitignore",
+    "CLAUDE.md",
+    "README.md",
+    "build-your-own/skill-template.md",
+    "build-your-own/workflow-template.md",
+    "docs/intro.html",
+    "docs/roy-workflow.md",
+    "examples/sample-report.md",
+    "rules.md",
+    "samples/ads-sample.csv",
+    "shared-rules/README.md",
+    "tools/ads_check.py"
+  ]
+}

@@ -1,0 +1,280 @@
+<title>ROY Starter Kit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#FBFAF6; --card:#FFFFFF; --sub:#F5F3EC; --fg:#191E1B; --muted:#5E6763; --line:#E5E1D6;
+  --accent:#146B5E; --accent-soft:#E4EFEC;
+  --good:#1E9E56; --good-soft:#E6F4EC; --warn:#A9640A; --warn-soft:#F7EEDF; --crit:#B23B2E; --crit-soft:#F6E4E1;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --r-btn:6px; --r-card:8px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11150F; --card:#181D16; --sub:#1F2519; --fg:#ECEFE8; --muted:#9BA398; --line:#2C3327;
+  --accent:#54C3B0; --accent-soft:#1B2A26;
+  --good:#5BCB8A; --good-soft:#18281E; --warn:#E0A44A; --warn-soft:#2A2214; --crit:#E07A6C; --crit-soft:#2C1A17;
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#11150F; --card:#181D16; --sub:#1F2519; --fg:#ECEFE8; --muted:#9BA398; --line:#2C3327;
+  --accent:#54C3B0; --accent-soft:#1B2A26;
+  --good:#5BCB8A; --good-soft:#18281E; --warn:#E0A44A; --warn-soft:#2A2214; --crit:#E07A6C; --crit-soft:#2C1A17;
+  color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.7;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding-block:clamp(32px,6vw,60px) 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:clamp(40px,6vw,64px)}
+section{display:flex;flex-direction:column;gap:var(--s4)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(28px,5.6vw,42px);font-weight:700;letter-spacing:-.02em;line-height:1.25;margin:0;text-wrap:balance}
+h2{font-size:20px;font-weight:700;margin:0;text-wrap:balance}
+h3{font-size:16px;font-weight:600;margin:0}
+p{margin:0}
+.lead{font-size:17px;color:var(--muted)}
+.src{font-size:12px;color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+code{font-family:var(--mono);font-size:.88em;background:var(--sub);padding:1px 6px;border-radius:4px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3)}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s1)}
+.kpi .k{font-size:12px;color:var(--muted);font-weight:600}
+.kpi .v{font-family:var(--mono);font-weight:600;font-size:20px;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12px;color:var(--muted)}
+.callout{border-left:3px solid var(--warn);background:var(--warn-soft);border-radius:0 var(--r-card) var(--r-card) 0;padding:var(--s3) var(--s4);display:flex;flex-direction:column;gap:var(--s1);font-size:15px}
+.callout.good{border-color:var(--good);background:var(--good-soft)}
+.callout b{font-weight:600}
+.j{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3)}
+.j .head{display:flex;gap:var(--s3);align-items:baseline;flex-wrap:wrap}
+.tagv{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.tagv.keep{background:var(--good-soft);color:var(--good)}
+.tagv.watch{background:var(--warn-soft);color:var(--warn)}
+.tagv.fix{background:var(--crit-soft);color:var(--crit)}
+.j b.title{font-size:17px}
+.ev{background:var(--sub);border-radius:var(--r-btn);padding:var(--s3) var(--s4);font-size:14px;display:flex;flex-direction:column;gap:var(--s1)}
+.ev .lbl{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--accent)}
+.rule{font-family:var(--mono);font-size:11px;background:var(--accent-soft);color:var(--accent);padding:1px 6px;border-radius:4px;white-space:nowrap}
+figure{margin:0;display:flex;flex-direction:column;gap:6px}
+figure img{width:100%;max-width:100%;border:1px solid var(--line);border-radius:var(--r-card);display:block}
+figcaption{font-size:12px;color:var(--muted)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-card);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th{background:var(--sub);color:var(--muted);font-weight:600;font-size:12px;text-align:left;padding:8px 12px;border-bottom:1px solid var(--line)}
+td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s2)}
+footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:var(--s4)}
+@media (max-width:920px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<style>
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s3)}
+.steps li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:var(--s3);align-items:start}
+.steps .n{width:32px;height:32px;border-radius:var(--r-btn);background:var(--accent-soft);color:var(--accent);font-family:var(--mono);font-weight:600;display:grid;place-items:center;font-size:14px}
+.steps .t{display:flex;flex-direction:column;gap:2px;padding-top:4px}
+.steps .t span{color:var(--muted);font-size:14px}
+.say{font-family:var(--mono);font-size:13px;background:var(--sub);border:1px solid var(--line);border-radius:var(--r-btn);padding:2px 8px;white-space:nowrap}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3)}
+.three .box .idx{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
+.three ul{margin:0;padding-left:16px;font-size:13px;display:flex;flex-direction:column;gap:2px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;width:max-content}
+.tag.run{background:var(--good-soft);color:var(--good)}
+.tag.edit{background:var(--accent-soft);color:var(--accent)}
+.tag.read{background:var(--sub);color:var(--muted)}
+.vs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3)}
+.vs .col{border-radius:var(--r-card);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s2);border:1px solid var(--line)}
+.vs .before{background:var(--sub)}
+.vs .after{background:var(--card);border-color:var(--accent)}
+.vs .label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.vs .before .label{color:var(--muted)}
+.vs .after .label{color:var(--accent)}
+.pipe{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:13px}
+.pipe span{background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:var(--r-btn);font-weight:500}
+.pipe i{font-style:normal;color:var(--muted)}
+pre.tree{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s4);font-family:var(--mono);font-size:12.5px;line-height:1.7;overflow-x:auto;color:var(--fg)}
+pre.tree .c{color:var(--muted)}
+.report{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3)}
+@media (max-width:920px){.three,.vs{grid-template-columns:minmax(0,1fr)}}
+</style>
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:var(--s4)">
+  <div class="eyebrow">BYEM · 스폰지클럽 4기</div>
+  <h1>ROY Starter Kit</h1>
+  <p class="lead">퍼포먼스 마케터를 위한 AI 업무 자동화 입문 킷이에요. 작은 ROY를 실제 업무(광고 성과 점검 · 랜딩 진단)에 돌려 보고, 그 스킬이 어떻게 설계됐는지 펼쳐 본 뒤, 자기 업무를 스킬로 만드는 것까지가 한 세트예요.</p>
+  <div class="callout good"><b>스타터킷 = 작동하는 작은 ROY + 나만의 자동화를 만드는 방법 + 완성형 ROY의 구조</b>
+  <p>기능 배포가 아니라, 「업무를 절차로 만들면 AI가 매번 같은 기준으로 일한다」를 직접 경험하는 교육 · 체험 킷이에요.</p></div>
+</header>
+
+<section>
+  <h2>구성 — 실행 2 · 제작 1 · 설계 예시 3</h2>
+  <div class="three">
+    <div class="box"><span class="idx">01</span><h3>직접 실행하는 ROY</h3><span class="tag run">실행 가능</span>
+      <ul><li>광고 성과 점검 — Meta CSV · xlsx</li><li>랜딩 진단 — 링크 1개</li><li>판단 규칙 6개 (rs-1~6)</li></ul></div>
+    <div class="box"><span class="idx">02</span><h3>나만의 자동화 만들기</h3><span class="tag edit">직접 수정</span>
+      <ul><li>업무 분해 템플릿</li><li>스킬 파일 템플릿</li><li>내 버전 스킬(my-*)</li></ul></div>
+    <div class="box"><span class="idx">03</span><h3>더 넓은 자동화</h3><span class="tag read">설계 예시만</span>
+      <ul><li>브랜드 조사</li><li>광고 세팅 점검</li><li>소재 분석</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>먼저 준비 — 설치 2개 · 확인 1개</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>설치</th><th>왜 필요한가</th></tr></thead>
+    <tbody>
+      <tr><td><b>Claude Code</b></td><td style="font-size:14px">ROY가 일하는 곳</td></tr>
+      <tr><td><b>Chrome + Claude 확장</b> <span class="tag run" style="background:var(--crit-soft);color:var(--crit)">필수</span></td><td style="font-size:14px">ROY가 <b>랜딩페이지와 광고관리자 화면을 직접 봐야</b> 비즈니스 모델 판단 · 랜딩 진단 · 계정 상태 정리가 돼요. 없으면 광고 파일 분석만 돼요. Chrome 웹스토어에서 「Claude」 설치</td></tr>
+      <tr><td><b>python3</b> <span class="tag read">확인만</span></td><td style="font-size:14px">광고 숫자 계산용 — <b>맥에는 보통 이미 설치돼 있어요.</b> 터미널에서 <span class="mono">python3 --version</span>이 나오면 끝. 안 나오면 ROY가 설치 방법을 알려 줘요</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>ROY에게 주는 것 — 3가지</h2>
+  <div class="tbl"><table>
+    <thead><tr><th style="width:36px">#</th><th>주는 것</th><th>어떻게</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td><b>Meta 광고 파일</b></td><td style="font-size:14px">광고관리자 → 광고 탭 → 기간 <b>최근 14일</b> → 분석 기준 <b>일</b> → 내보내기(CSV · xlsx) → <span class="mono">workspace/data/</span>에 넣기</td></tr>
+      <tr><td class="num">2</td><td><b>랜딩페이지 링크</b></td><td style="font-size:14px">광고를 누르면 도착하는 페이지 주소</td></tr>
+      <tr><td class="num">3</td><td><b>광고관리자 링크</b></td><td style="font-size:14px">캠페인 화면 주소 — ROY는 <b>보기만</b> 하고 켜기 · 끄기 · 예산 버튼을 누르지 않아요</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">3가지를 다 기다리지 않아요. 온 것부터 처리하고, 빠진 것은 보고서 「못 본 것」에 적어요. 광고 파일이 아직 없으면 연습용 샘플로 먼저 돌 수 있어요.</p>
+</section>
+
+<section>
+  <h2>주면, ROY가 먼저 물어요 — 비즈니스 모델과 목표</h2>
+  <p style="font-size:15px">분석에 들어가기 전에 ROY가 랜딩을 훑고 이 회사가 어떻게 돈을 버는지부터 맞춰요. 목표는 ROY가 정하지 않아요(<span class="rule">rs-6</span>).</p>
+  <div class="tbl"><table>
+    <thead><tr><th>단계</th><th>ROY가 하는 말</th></tr></thead>
+    <tbody>
+      <tr><td><b>① 비즈니스 모델 판단</b></td><td style="font-size:14px">「상품을 바로 사는 쇼핑몰이네요, 맞나요?」 / 「구매 대신 상담 신청을 받는 페이지네요」 — 랜딩을 보고 판단한 뒤 확인을 받아요</td></tr>
+      <tr><td><b>② 모델에 맞는 목표 질문</b></td><td style="font-size:14px">쇼핑몰이면: 「목표 ROAS가 있나요? 평균 주문금액은 얼마쯤인가요?」 · 문의형이면: 「문의 1건에 얼마까지 괜찮나요?」</td></tr>
+      <tr><td><b>③ 기록</b></td><td style="font-size:14px">답을 <span class="mono">workspace/goal.md</span>에 저장 → 다음 보고서부터 이 기준으로 판단해요. 「아직 없음」이면 목표 대비 판단은 하지 않아요</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>받는 것 — 보고서 1부</h2>
+  <p class="src">보고서는 <span class="mono">workspace/reports/</span>에 저장돼요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>보고서 칸</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td><b>광고 성과</b></td><td style="font-size:14px"><b>최근 7일 vs 그 전 7일</b> — 지출 · 클릭률(CTR) · 구매 · CPA · ROAS, 캠페인별 · 광고별 · 일별 표</td></tr>
+      <tr><td><b>ROY 판단</b></td><td style="font-size:14px">무엇이 왜 달라졌는지 — 판단마다 근거 숫자 + 규칙 번호(rs-1~6)</td></tr>
+      <tr><td><b>할 일</b></td><td style="font-size:14px"><b>승인 · 보류 · 반대</b>로 답하는 제안 목록 (예: 추가 증액 보류 · 신규 소재 제작 · 자료 요청)</td></tr>
+      <tr><td><b>랜딩 진단</b></td><td style="font-size:14px">체크리스트 9개(첫 화면 · CTA · 신뢰 요소) + <b>먼저 고칠 것 3개</b></td></tr>
+      <tr><td><b>계정 상태</b></td><td style="font-size:14px">켜짐 · 꺼짐 · 예산 · 최근 변경 — 광고관리자 화면 기준</td></tr>
+      <tr><td><b>못 본 것</b></td><td style="font-size:14px">데이터가 없어 판단하지 못한 것 — 숫자를 지어내지 않아요</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>그다음 — ROY의 일하는 방식을 내 것으로</h2>
+  <p style="font-size:15px"><b>스킬 = ROY가 일하는 순서가 적힌 파일</b>이에요. 무엇을 받아서 → 어떤 순서로 보고 → 무슨 기준으로 판단하고 → 어떤 형식으로 보고하는지가 적혀 있어요. 이 파일이 있어서 ROY는 매번 같은 방식으로 일해요.</p>
+  <ol class="steps">
+    <li><span class="n">1</span><div class="t"><b>어떻게 일했는지 물어보기</b><span>보고서를 받고 「방금 어떻게 분석한 거야?」라고 물으면, ROY가 받은 것 · 순서 · 기준 · 보고 형식 네 칸으로 펼쳐서 보여줘요.</span></div></li>
+    <li><span class="n">2</span><div class="t"><b>내 기준 넣기</b><span>예를 들어 「구매당 비용이 3만 원 넘는 광고는 따로 알려줘」라고 말하면, ROY가 그 기준이 들어간 <b>내 전용 버전</b>을 만들어요. 다음부터는 그 기준으로 봐요. 내 버전은 내 컴퓨터에만 있고 GitHub에 올라가지 않아요.</span></div></li>
+    <li><span class="n">3</span><div class="t"><b>내 다른 업무도 맡기기</b><span>매주 반복하는 업무 하나(예: 경쟁사 인스타 새 게시물 정리)를 말하면, ROY가 그 업무도 똑같이 절차로 만들어서 맡아요. 이게 이 킷의 최종 목표예요.</span></div></li>
+  </ol>
+</section>
+
+<section>
+  <h2>핵심 차이 — 질문이 아니라 절차</h2>
+  <div class="vs">
+    <div class="col before"><span class="label">일반 사용</span><p><span class="say">이 광고 데이터 분석해 줘</span></p><p style="font-size:14px;color:var(--muted)">AI가 매번 다른 지표 · 다른 형식으로 답해요. 기준이 대화마다 달라져요.</p></div>
+    <div class="col after"><span class="label">ROY 미니 스킬</span><p><span class="say">광고 분석해 줘</span></p>
+      <div class="pipe"><span>데이터 검증</span><i>→</i><span>지표 계산</span><i>→</i><span>기간 비교</span><i>→</i><span>이상 신호</span><i>→</i><span>판단(rs#)</span><i>→</i><span>할 일</span><i>→</i><span>저장</span></div>
+      <p style="font-size:14px;color:var(--muted)">계산은 고정 계산기(tools/ads_check.py)가 해요. 같은 파일이면 같은 숫자 · 같은 형식이에요.</p></div>
+  </div>
+  <div class="report">
+    <b>판단 규칙 6개 (rules.md)</b>
+    <ul style="margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:4px">
+      <li><span class="rule">rs-1</span> 단일 일자 데이터로 판단하지 않는다</li>
+      <li><span class="rule">rs-2</span> 동일 길이 기간끼리만 비교한다</li>
+      <li><span class="rule">rs-3</span> CTR은 높은데 CVR이 낮으면 카피 · 랜딩 일치부터 점검한다</li>
+      <li><span class="rule">rs-4</span> 소표본으로 승자를 판정하지 않는다</li>
+      <li><span class="rule">rs-5</span> 지출 증가 ≠ 예산 증액 — 배분 결과. 변경은 활동 기록으로 확인한다</li>
+      <li><span class="rule">rs-6</span> 목표(ROAS · CPA · 성과 기준)는 사람이 정한다</li>
+    </ul>
+    <p class="src">판단마다 쓴 규칙 번호가 보고서에 표기돼요. 내 회사 기준으로 바꾸는 것까지가 실습이에요.</p>
+  </div>
+</section>
+
+<section>
+  <h2>보고서 예시 <span style="font-size:13px;color:var(--muted);font-weight:400">— 연습용 가짜 데이터 실행 결과</span></h2>
+  <div class="report">
+    <div style="display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;align-items:baseline"><b>광고 성과 점검</b><span class="src mono">10/5–10/11 vs 9/28–10/4</span></div>
+    <div class="tbl"><table>
+      <thead><tr><th>지표</th><th class="num">지난 기간</th><th class="num">이번 기간</th><th class="num">변화</th></tr></thead>
+      <tbody>
+        <tr><td>지출</td><td class="num">942,590원</td><td class="num">1,080,070원</td><td class="num">+14.6%</td></tr>
+        <tr><td>CTR</td><td class="num">1.25%</td><td class="num">1.70%</td><td class="num">+35.1%</td></tr>
+        <tr><td>구매</td><td class="num">47</td><td class="num">44</td><td class="num" style="color:var(--crit)">−6.4%</td></tr>
+        <tr><td>CPA</td><td class="num">20,055원</td><td class="num">24,547원</td><td class="num" style="color:var(--crit)">+22.4%</td></tr>
+        <tr><td>ROAS</td><td class="num">157%</td><td class="num">105%</td><td class="num" style="color:var(--crit)">−32.8%</td></tr>
+      </tbody>
+    </table></div>
+    <div style="display:flex;flex-direction:column;gap:var(--s2)">
+      <b style="font-size:14px">ROY 판단</b>
+      <p style="font-size:14px">신규 광고 D가 주간 지출의 41%를 집행했지만 CTR 2.36%(계정 1위) 대비 CVR 1.23%(최하위)예요. 카피 · 랜딩 일치 점검이 우선이에요 <span class="rule">rs-3</span>. 구매 13건은 소표본이라 중단 판정은 보류 <span class="rule">rs-4</span>.</p>
+      <b style="font-size:14px">할 일 — 승인 · 보류 · 반대로 답해 주세요</b>
+      <p style="font-size:14px">1. D 예산 유지, 추가 증액 보류 · 2. D 연결 랜딩 확인 · 3. 주문 파일 제공(플랫폼 전환값 대조)</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>이 킷에는 ROY의 어떤 부분이 들어갔나</h2>
+  <div class="grid2">
+    <div class="box"><h3>들어간 것 — ROY에서 가져온 부분</h3>
+      <ul style="margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:5px">
+        <li><b>일하는 절차 2개</b> — 광고 성과 점검(고정 계산기 · 같은 보고 형식) · 랜딩 진단(체크리스트 9개)</li>
+        <li><b>판단 원칙 6개</b> — ROY 규칙집의 일반 원칙을 새 문장으로 (rs-1~6)</li>
+        <li><b>회사를 맡는 첫 단계</b> — 비즈니스 모델 파악 → 목표 질문</li>
+        <li><b>금지선</b> — 숫자 지어내지 않기 · 광고를 직접 바꾸지 않기 · 모르면 「모름」</li>
+        <li><b>일하는 태도</b> — 제안은 승인 · 보류 · 반대로, 결정은 사람이</li>
+      </ul></div>
+    <div class="box"><h3>안 들어간 것 — BYEM 내부</h3>
+      <ul style="margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:5px">
+        <li>BYEM 규칙서 본문 — 고객 사례 · 세부 수치 기준</li>
+        <li>소재 분석 · 광고 세팅 점검 · 브랜드 조사 (설계 예시만)</li>
+        <li>여러 절차를 스스로 골라 잇는 판단 (완성형 ROY)</li>
+        <li>자동 실행 · 광고 API 연결 · 결과 학습 구조</li>
+      </ul></div>
+  </div>
+  <p class="src">내보내기 검사가 BYEM 규칙서 본문 · ROY 원본 문장 · 고객명 · 토큰을 자동으로 막아요 — 현재 0건.</p>
+</section>
+
+<section>
+  <h2>폴더 구조 · 받는 곳</h2>
+<pre class="tree">workflows/에밀리/roy-starter/     <span class="c">← selfishclub/aaa-season2 저장소 안</span>
+├ README.md                      <span class="c">← 진입점 「ROY 시작하기」</span>
+├ CLAUDE.md                      <span class="c">← 금지선 (숫자 생성 금지 · 광고 변경 금지 · 토큰 금지)</span>
+├ rules.md                       <span class="c">← 판단 규칙 6개</span>
+├ .claude/skills/                <span class="c">← roy-start · ads-check · landing-check</span>
+├ tools/ads_check.py             <span class="c">← 고정 계산기 (xlsx · CSV)</span>
+├ samples/                       <span class="c">← 연습용 가짜 데이터</span>
+├ build-your-own/                <span class="c">← 업무 분해 · 스킬 템플릿</span>
+├ docs/roy-workflow.md           <span class="c">← 완성형 ROY 구조 · 설계 예시 3</span>
+├ shared-rules/                  <span class="c">← (선택) 기준 공유 PR</span>
+└ workspace/                     <span class="c">← 내 데이터 · 보고서 — git 제외</span></pre>
+  <p class="src">받는 방법 · 업데이트 = 이 폴더의 README 참고 (workspace/는 보존돼요)</p>
+</section>
+
+<section>
+  <h2>현재 상태</h2>
+  <div class="grid2">
+    
+    <div class="box"><h3>상태 (2026-10-16)</h3><ul style="margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:4px"><li>시즌2 저장소 배포 완료</li><li>계산기 테스트 13 · 내보내기 검사 5 통과</li><li>가짜 데이터 + 실데이터 1건으로 전체 흐름 검증</li><li>공개판(Byem-hq) · 외부 회원 검증은 예정</li></ul></div>
+  </div>
+</section>
+
+<footer>BYEM · ROY Starter Kit — 보고서 예시 숫자는 연습용 가짜 데이터예요.</footer>
+</div>
